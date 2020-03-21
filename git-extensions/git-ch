@@ -1,0 +1,2 @@
+git branch --no-pager | grep $1 | xargs git checkout 
+git branch 
