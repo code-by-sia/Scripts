@@ -6,9 +6,10 @@ simple bash scripts
 run `./install.sh`
 
 ### Git Extensions
-
-* checkout master `git m`
-* search and checkout branch `git ch SEARCH_KEYWORD`
-* show pretty log `git g`
-* show status `git ls`
-* remove all other branches `git purge`
+| Description | Command |
+|--|--|
+| checkout master| `git m`|
+| search and checkout branch | `git ch SEARCH_KEYWORD`|
+| show pretty log | `git g`|
+| show status | `git ls` |
+| remove all other branches | `git purge`|
