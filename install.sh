@@ -10,7 +10,7 @@ shell_config(){
 	      echo 'export PATH=$PATH:~/.scripts' >> ~/.zshrc  ;;
 	   "fish")
 	      echo 'export PATH=$PATH:~/.scripts' >> ~/.config/fish/config.fish ;;
-     *)
+            *)
 	      echo '[!] Your shell is not detected by installer script.'
 	      echo -e '\t\t add ~/.script/ folder to PATH env.'
 	   ;;
