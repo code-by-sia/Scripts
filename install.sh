@@ -22,3 +22,5 @@ main(){
     shell_config
     export PATH=$PATH:~/.scripts
 }
+
+main
