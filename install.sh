@@ -5,15 +5,15 @@ shell_config(){
   defualt_shell=`echo $SHELL | awk -F '/' '{ print $NF }'`
   case $defualt_shell in
 	  "bash")
-	      echo 'export PATH=$PATH:~/.scripts' >> ~/.bashrc ;;
+ 	        echo 'export PATH=$PATH:~/.scripts' >> ~/.bashrc ;;
 	  "zsh")
-	      echo 'export PATH=$PATH:~/.scripts' >> ~/.zshrc  ;;
-	   "fish")
-	      echo 'export PATH=$PATH:~/.scripts' >> ~/.config/fish/config.fish ;;
-            *)
-	      echo '[!] Your shell is not detected by installer script.'
-	      echo -e '\t\t add ~/.script/ folder to PATH env.'
-	   ;;
+	      	echo 'export PATH=$PATH:~/.scripts' >> ~/.zshrc  ;;
+	"fish")
+	      	echo 'export PATH=$PATH:~/.scripts' >> ~/.config/fish/config.fish ;;
+        *)
+	      	echo '[!] Your shell is not detected by installer script.'
+	      	echo -e '\t\t add ~/.script/ folder to PATH env.'
+	esac
 }
 
 main(){
