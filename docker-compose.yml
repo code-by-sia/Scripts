@@ -1,32 +1,30 @@
-version: '3.5'
+version: "3.6"
 services:
   gitlab:
     image: gitlab/gitlab-ce:latest
-    hostname: localhost
-    restart: unless-stopped
-    environment:
-      GITLAB_OMNIBUS_CONFIG: |
-        gitlab_rails['gitlab_shell_ssh_port'] = 8822
     ports:
-      - "8000:80"
-      - "8822:22"
+      - "22:22"
+      - "80:80"
+      - "443:443"
     volumes:
-      - ./config/gitlab:/etc/gitlab
-      - ./data/gitlab:/var/opt/gitlab
-      - ./logs:/var/log/gitlab
-    networks:
-      - gitlab
-
+      - $GITLAB_HOME/data:/var/opt/gitlab
+      - $GITLAB_HOME/logs:/var/log/gitlab
+      - $GITLAB_HOME/config:/etc/gitlab
+    environment:
+      GITLAB_OMNIBUS_CONFIG: "from_file('/omnibus_config.rb')"
+    configs:
+      - source: gitlab
+        target: /omnibus_config.rb
+    secrets:
+      - gitlab_root_password
   gitlab-runner:
     image: gitlab/gitlab-runner:alpine
-    restart: unless-stopped
-    depends_on:
-      - gitlab
-    volumes:
-      - ./config/gitlab-runner:/etc/gitlab-runner
-      - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-      - gitlab
-
-networks:
+    deploy:
+      mode: replicated
+      replicas: 4
+configs:
   gitlab:
+    file: ./gitlab.rb
+secrets:
+  gitlab_root_password:
+    file: ./root_password.txt
